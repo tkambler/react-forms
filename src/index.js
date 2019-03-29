@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import NameForm from './components/name-form';
 import AgeForm from './components/age-form';
 import ReactJSON from 'react-json-view';
-import _ from 'lodash';
 import { reducer, defaultState } from './reducer';
+import _ from 'lodash';
+import './styles';
 
 function App() {
 
@@ -12,9 +13,6 @@ function App() {
   const submitEnabled = useMemo(() => {
     return state.nameForm.valid && state.ageForm.valid;
   }, [state]);
-
-  console.log('state', state);
-  console.log('submitEnabled', submitEnabled);
 
   function submit() {
     console.log('Submit');
