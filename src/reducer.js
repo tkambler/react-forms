@@ -1,4 +1,4 @@
-import { combineReducers, reduceReducers } from 'app/lib/util';
+import { combineReducers } from 'app/lib/util';
 
 const reducers = {
   nameForm: (state, action) => {
