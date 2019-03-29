@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "formik": "1.5.1",
+    "react-json-view": "1.19.1",
     "yup": "0.27.0"
   }
 }

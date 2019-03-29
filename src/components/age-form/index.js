@@ -3,24 +3,24 @@ import * as yup from 'yup';
 import Form from 'app/components/form';
 
 const schema = yup.object().shape({
-  first_name: yup.string().required().label('First Name')
+  age: yup.string().required().label('Age')
 });
 
-export default function NameForm({
+export default function AgeForm({
   onChange
 }) {
 
   return (
     <Form
       initialValues={{
-        first_name: 'John'
+        age: '25'
       }}
       schema={schema}
       onChange={onChange}
     >
       <Form.TextField
-        label="First Name"
-        name="first_name"
+        label="Age"
+        name="age"
       />
     </Form>
   );
