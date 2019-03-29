@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import NameForm from './components/name-form';
 import AgeForm from './components/age-form';
@@ -9,6 +9,12 @@ import { reducer, defaultState } from './reducer';
 function App() {
 
   const [ state, dispatch ] = useReducer(reducer, defaultState);
+  const submitEnabled = useMemo(() => {
+    return state.nameForm.valid && state.ageForm.valid;
+  }, [state]);
+
+  console.log('state', state);
+  console.log('submitEnabled', submitEnabled);
 
   function submit() {
     console.log('Submit');
@@ -33,12 +39,15 @@ function App() {
         }}
       />
       <button
-        disabled={!state.submitEnabled}
+        disabled={submitEnabled}
         onClick={submit}
       >
         Submit
       </button>
-      <ReactJSON src={state} theme="monokai" />
+      <ReactJSON src={{
+        ...state,
+        submitEnabled,
+      }} theme="monokai" />
     </div>
   );
 

@@ -1,25 +1,31 @@
-export function reducer(state, action) {
+import { combineReducers, reduceReducers } from 'app/lib/util';
 
-  switch (action.type) {
-    case 'setNameForm':
-      const res = {
-        ...state,
-        nameForm: action.payload
-      };
-      res.submitEnabled = res.nameForm.valid && res.ageForm.valid;
-      return res;
-    case 'setAgeForm':
-      const res = {
-        ...state,
-        ageForm: action.payload
-      };
-      res.submitEnabled = res.nameForm.valid && res.ageForm.valid;
-      return res;
-    default:
-      throw new Error(`Unknown action: ${action.type}`);
-  }
+const reducers = {
+  nameForm: (state, action) => {
 
-}
+    const actions = {
+      setNameForm: () => {
+        return action.payload;
+      }
+    };
+
+    return actions[action.type] ? actions[action.type]() : state;
+
+  },
+  ageForm: (state, action) => {
+
+    const actions = {
+      setAgeForm: () => {
+        return action.payload;
+      }
+    };
+
+    return actions[action.type] ? actions[action.type]() : state;
+
+  },
+};
+
+export const reducer = combineReducers(reducers);
 
 export const defaultState = {
   nameForm: {
@@ -28,5 +34,4 @@ export const defaultState = {
   ageForm: {
     valid: false
   },
-  submitEnabled: false
 };
